@@ -51,7 +51,7 @@ Here is an exploratory visualization of the data set. On top of each image you c
 
 I plotted the initial distribution of the labels to verify how balanced they are. 
 
-![alt text][image1]
+![alt text][image2]
 
 
 ### Design and Test a Model Architecture
@@ -66,6 +66,7 @@ Here is an example of a traffic sign image with different augmentation technique
 After applying the data aumentation, the histogram of the training set looks like this: 
 
 ![alt text][image4]
+
 This step takes quite a lot of time since we're trying to have an equal number of samples per label.
 
 I tested a CNN architecture using RGB images and I realised I needed a larger network and hence the training time would be too much for my computer. So, I decided to convert the images to grayscale.
@@ -75,6 +76,7 @@ As the last step, I normalized the image data to change the values of the images
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
 My final model consisted of the following layers:
+
 ![alt text][image5]
 
 | Layer         		|     Description	        					| 
@@ -106,17 +108,19 @@ RELU||
 #### 3. Model training. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
 To train the model, I used an learning rate of 0.001 with and Adam Optimizer, based on literature Adam learns the fastes, while it is more stable than the other optimizers (it doesn’t suffer any major decreases in accuracy).
-
-
-
+ I set the epochs to 50 
+ Batch size was set to 100 samples
+ I set the dropout to 20% because it's implemented in to the first convolutional layer
 
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
+I tried different architectures, it was a bit tricky since retraining takes a lot of time, but finally I got an accuracy of XXX in the validation set. 
+
 My final model results were:
-* training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* training set accuracy of XXX
+* validation set accuracy of XXX
+* test set accuracy of XXXX
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen?
@@ -170,5 +174,4 @@ For the first image, the model is relatively sure that this is a stop sign (prob
 | .05					| Yield											|
 | .04	      			| Bumpy Road					 				|
 | .01				    | Slippery Road      							|
-
 
