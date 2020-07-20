@@ -26,9 +26,14 @@ The goals / steps of this project are the following:
 [image3]: ./augment.png "Augment"
 [image4]: ./final_histo.png "Final Histogram"
 [image5]: ./Architecture.png "Architecture"
-[image6]: ./examples/placeholder.png "Traffic Sign 3"
-[image7]: ./examples/placeholder.png "Traffic Sign 4"
-[image8]: ./examples/placeholder.png "Traffic Sign 5"
+[image6]: ./test_images/label_08.png "Traffic Sign 3"
+[image7]: ./test_images/Label1_02.png "Traffic Sign 3"
+[image8]: ./test_images/Label_02.png "Traffic Sign 3"
+[image9]: ./test_images/Label_04.png "Traffic Sign 3"
+[image10]: ./test_images/Label_03.png "Traffic Sign 3"
+[image11]: ./test_images/Label_05.png "Traffic Sign 3"
+[image12]: ./test_images/Label_34.png "Traffic Sign 3"
+[image13]: ./test_images/Label_35.png "Traffic Sign 3"
 
 Here is a link to my [project code](./Traffic_Sign_Classifier.ipynb)
 
@@ -58,7 +63,7 @@ I plotted the initial distribution of the labels to verify how balanced they are
 
 #### 1.  Image data preprocessing. 
 
-As a first step, I decided to balance the classes by applying data augmentation techniques as, flipping, rotation, saturation modification and light manipulation. The main idea behind this process is to have nearly 1500 images per label. Labels with less than 1500 images were augmented to reach that number 25% per each technique.
+As a first step, I decided to balance the classes by applying data augmentation techniques as, flipping, rotation, saturation modification and light manipulation. The main idea behind this process is to have nearly 1500 images per label. Labels with less than 1500 images were supposed to be augmented to reach that number 25% per each technique. For practical usage and computational constraints, I decided only to augment till minimum 100 images per label (but this can be changed easily in the code).
 Here is an example of a traffic sign image with different augmentation techniques.
 
 ![alt text][image3]
@@ -84,8 +89,6 @@ My final model consisted of the following layers:
 | Input         		| 32x32x1 Gray image   							| 
 | C1 Convolution 5x5     | 1x1 stride, valid padding, outputs 28x28x6 	|
 | RELU					|		|
-|C2 Convolution 1x1 | 1x1 stride, valid padding, outputs 28x28x8 |
-|RELU
 | Max pooling	| 2x2 stride,  outputs 14x14x8 				|
 |C3 Convolution 5x5  | 1x1 stride, valid padding, outputs 10x10x16  | 
 | RELU |  |
@@ -110,39 +113,28 @@ RELU||
 To train the model, I used an learning rate of 0.001 with and Adam Optimizer, based on literature Adam learns the fastes, while it is more stable than the other optimizers (it doesn’t suffer any major decreases in accuracy).
  I set the epochs to 50 
  Batch size was set to 100 samples
- I set the dropout to 20% because it's implemented in to the first convolutional layer
+ I set the dropout to 50%
 
 
-#### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
+#### 4. Approach
 
-I tried different architectures, it was a bit tricky since retraining takes a lot of time, but finally I got an accuracy of XXX in the validation set. 
+I tried different architectures, it was a bit tricky since retraining takes a lot of time, but finally I got an accuracy of 0.94 in the validation set. 
 
 My final model results were:
-* training set accuracy of XXX
-* validation set accuracy of XXX
-* test set accuracy of XXXX
+* training set accuracy of 0.997
+* validation set accuracy of 0.94
+* test set accuracy of 0.929
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
-
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
+I tried multiple variations of LeNet that I made. The very first approach was using RBG images, the main problem with it was that the accuracy was never higher than 60%, I presume that for RGB images I'd need a deeper network, so I add some convolutional layers more, and tried the inception approach, but the accuracy didn't improve much. Due to time and computational contrains I didn't explore further, but I decided to use images in gray scale instead. With the initial approach the accuracy wasn't going above 90% even when the images were in grayscale, so I decided to start removing some layers. From the previous section we can see that C2 is missing, that corresponds to a 1x1 convolutional layer that was removed. After this change I was able to train the network achiving and accuracy above 93%.  
  
 
 ### Test a Model on New Images
 
-#### 1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.
+Here are eight German traffic signs that I found on the web:
 
-Here are five German traffic signs that I found on the web:
+![alt text][image6] ![alt text][image7] ![alt text][image8] ![alt text][image9] 
+![alt text][image10] ![alt text][image11] ![alt text][image12] ![alt text][image13] 
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
 
 The first image might be difficult to classify because ...
 
@@ -162,16 +154,4 @@ Here are the results of the prediction:
 The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
-
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
-
-For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
-
-| Probability         	|     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
 
