@@ -26,14 +26,8 @@ The goals / steps of this project are the following:
 [image3]: ./augment.png "Augment"
 [image4]: ./final_histo.png "Final Histogram"
 [image5]: ./Architecture.png "Architecture"
-[image6]: ./test_images/label_08.png "Traffic Sign 3"
-[image7]: ./test_images/Label1_02.png "Traffic Sign 3"
-[image8]: ./test_images/Label_02.png "Traffic Sign 3"
-[image9]: ./test_images/Label_04.png "Traffic Sign 3"
-[image10]: ./test_images/Label_03.png "Traffic Sign 3"
-[image11]: ./test_images/Label_05.png "Traffic Sign 3"
-[image12]: ./test_images/Label_34.png "Traffic Sign 3"
-[image13]: ./test_images/Label_35.png "Traffic Sign 3"
+[image6]: ./prediction.png "Traffic Signs"
+
 
 Here is a link to my [project code](./Traffic_Sign_Classifier.ipynb)
 
@@ -130,28 +124,11 @@ I tried multiple variations of LeNet that I made. The very first approach was us
 
 ### Test a Model on New Images
 
-Here are eight German traffic signs that I found on the web:
-
-![alt text][image6] ![alt text][image7] ![alt text][image8] ![alt text][image9] 
-![alt text][image10] ![alt text][image11] ![alt text][image12] ![alt text][image13] 
-
-
-The first image might be difficult to classify because ...
-
-#### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
-
-Here are the results of the prediction:
-
-| Image			        |     Prediction	        					| 
-|:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+I downloaded eight German traffic signs from the web and run the CNN to test it over the new data. 
+Here you can find the results:
+![alt text][image6] 
 
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
+As we can see in the previous image, the predictions were correct for 7 of the 8 testing images (accuracy in the new set of images 0.875). The sixth image it's difficult to classify even for a human. The number 80 in the image can be easily be confused with a 60, which was the prediction of the network. By looking at the softmax probabilities of the CNN for the testing images we can infer that 6th image is the only image with two clear peaks, being the second one the correct prediction.  
 
-#### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
